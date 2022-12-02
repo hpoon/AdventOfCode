@@ -12,8 +12,8 @@ public class Main {
     private static final Map<String, ProblemDay<?>> PROBLEMS = new HashMap<String, ProblemDay<?>>() {{
         put("1a", new ProblemDay1a());
         put("1b", new ProblemDay1b());
-//        put("2a", new ProblemDay2a());
-//        put("2b", new ProblemDay2b());
+        put("2a", new ProblemDay2a());
+        put("2b", new ProblemDay2b());
 //        put("3a", new ProblemDay3a());
 //        put("3b", new ProblemDay3b());
 //        put("4a", new ProblemDay4a());
@@ -61,7 +61,7 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        final ProblemDay<?> problem = PROBLEMS.get("1b");
+        final ProblemDay<?> problem = PROBLEMS.get("2b");
         try (final Scanner ignored = problem.getProblemInputStream()) {
             System.out.println(problem.solve());
         } catch (IOException e) {
