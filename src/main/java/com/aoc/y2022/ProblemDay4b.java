@@ -34,11 +34,4 @@ public class ProblemDay4b implements ProblemDay<Integer> {
         return scanner;
     }
 
-    private Set<Character> convertToSet(final String str, int start, int end) {
-        final Set<Character> set = new HashSet<>();
-        for (int i = start; i < end; i++) {
-            set.add(str.charAt(i));
-        }
-        return set;
-    }
 }
