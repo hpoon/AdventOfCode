@@ -2,13 +2,10 @@ package com.aoc.y2022;
 
 import com.aoc.ProblemDay;
 import com.google.common.collect.Range;
-import com.google.common.collect.Sets;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class ProblemDay4a implements ProblemDay<Integer> {
 

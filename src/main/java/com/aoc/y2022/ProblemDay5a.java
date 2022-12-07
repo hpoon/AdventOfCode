@@ -1,7 +1,6 @@
 package com.aoc.y2022;
 
 import com.aoc.ProblemDay;
-import com.google.common.collect.Range;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;

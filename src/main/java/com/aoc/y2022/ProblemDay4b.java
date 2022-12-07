@@ -5,9 +5,7 @@ import com.google.common.collect.Range;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class ProblemDay4b implements ProblemDay<Integer> {
 

@@ -1,9 +1,7 @@
 package com.aoc.y2022;
 
 import com.aoc.ProblemDay;
-import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.nio.file.Paths;
