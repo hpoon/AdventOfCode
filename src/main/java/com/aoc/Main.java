@@ -24,8 +24,8 @@ public class Main {
         put("6b", new ProblemDay6b());
         put("7a", new ProblemDay7a());
         put("7b", new ProblemDay7b());
-//        put("8a", new ProblemDay8a());
-//        put("8b", new ProblemDay8b());
+        put("8a", new ProblemDay8a());
+        put("8b", new ProblemDay8b());
 //        put("9a", new ProblemDay9a());
 //        put("9b", new ProblemDay9b());
 //        put("10a", new ProblemDay10a());
@@ -61,7 +61,7 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        final ProblemDay<?> problem = PROBLEMS.get("7b");
+        final ProblemDay<?> problem = PROBLEMS.get("8b");
         try (final Scanner ignored = problem.getProblemInputStream()) {
             System.out.println(problem.solve());
         } catch (IOException e) {
