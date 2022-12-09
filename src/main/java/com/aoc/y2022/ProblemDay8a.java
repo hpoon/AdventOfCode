@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class ProblemDay8a implements ProblemDay<Long> {
 
@@ -43,7 +44,9 @@ public class ProblemDay8a implements ProblemDay<Long> {
                 .apply(p -> Math.min(p.getValue(), rightMaxes.get(p)))
                 .apply(p -> Math.min(p.getValue(), topMaxes.get(p)))
                 .apply(p -> Math.min(p.getValue(), bottomMaxes.get(p)));
-        return grid.score(p -> grid.get(p) > smallestMax.get(p));
+        return grid.score(
+                p -> grid.get(p) > smallestMax.get(p),
+                Stream::count);
     }
 
     @Override

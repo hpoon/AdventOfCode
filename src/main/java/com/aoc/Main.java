@@ -61,7 +61,7 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        final ProblemDay<?> problem = PROBLEMS.get("9b");
+        final ProblemDay<?> problem = PROBLEMS.get("8b");
         try (final Scanner ignored = problem.getProblemInputStream()) {
             System.out.println(problem.solve());
         } catch (IOException e) {

@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Matrix<T> {
 
@@ -53,14 +54,14 @@ public class Matrix<T> {
         return new Matrix<>(result);
     }
 
-    public long score(Predicate<Element<T>> condition) {
-        return IntStream.range(0, matrix.size())
+    public <U> U score(Predicate<Element<T>> condition,
+                      Function<Stream<Element<T>>, U> scoringFunction) {
+        return scoringFunction.apply(IntStream.range(0, matrix.size())
                 .boxed()
                 .flatMap(row -> IntStream.range(0, matrix.get(row).size())
                         .boxed()
                         .map(col -> new Element<>(row, col, get(row, col)))
-                        .filter(condition))
-                .count();
+                        .filter(condition)));
     }
 
     @Value
