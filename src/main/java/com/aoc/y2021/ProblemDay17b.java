@@ -3,17 +3,12 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
-public class ProblemDay17b implements ProblemDay<Integer> {
+public class ProblemDay17b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         // target area: x=169..206, y=-108..-68
         final String line = scanner.nextLine();
@@ -60,11 +55,5 @@ public class ProblemDay17b implements ProblemDay<Integer> {
         }
 
         return works.size();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day17.txt"));
-        return scanner;
     }
 }

@@ -3,14 +3,11 @@ package com.aoc.y2022;
 import com.aoc.ProblemDay;
 import com.aoc.Util;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay1b implements ProblemDay<Integer> {
+public class ProblemDay1b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final Queue<Integer> elves = new PriorityQueue<>(Comparator.reverseOrder());
         int sum = 0;
@@ -27,9 +24,4 @@ public class ProblemDay1b implements ProblemDay<Integer> {
         return elves.size() >= 3 ? elves.poll() + elves.poll() + elves.poll() : 0;
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day1.txt"));
-        return scanner;
-    }
 }

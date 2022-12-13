@@ -3,9 +3,6 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -13,19 +10,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class ProblemDay19b implements ProblemDay<Integer> {
+public class ProblemDay19b extends ProblemDay<Integer> {
 
     private static final Comparator<Beacon> COMPARATOR = Comparator.comparing(Beacon::getX)
             .thenComparingInt(Beacon::getY)
             .thenComparingInt(Beacon::getZ);
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final Queue<BeaconScanner> scanners = new LinkedList<>();
         while (scanner.hasNextLine()) {
@@ -260,11 +255,5 @@ public class ProblemDay19b implements ProblemDay<Integer> {
         public int hashCode() {
             return Objects.hash(x, y, z);
         }
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day19.txt"));
-        return scanner;
     }
 }

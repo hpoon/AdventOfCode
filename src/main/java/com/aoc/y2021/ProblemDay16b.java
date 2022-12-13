@@ -2,9 +2,6 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 import com.aoc.Util;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,15 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.stream.LongStream;
 
-public class ProblemDay16b implements ProblemDay<Long> {
-
-    private Scanner scanner;
+public class ProblemDay16b extends ProblemDay<Long> {
 
     public Long solve() {
-        final Map<String, long[]> letterToBinary = new HashMap<String, long[]>() {{
+        final Map<String, long[]> letterToBinary = new HashMap<>() {{
             put("0", new long[]{0, 0, 0, 0});
             put("1", new long[]{0, 0, 0, 1});
             put("2", new long[]{0, 0, 1, 0});
@@ -56,7 +50,6 @@ public class ProblemDay16b implements ProblemDay<Long> {
         final List<Long> operands = new ArrayList<>();
         while (!queue.isEmpty()) {
             long[] bits = new long[] { queue.poll(), queue.poll(), queue.poll() };
-            final long version = Util.bytesToLong(bits);
 
             bits = new long[] { queue.poll(), queue.poll(), queue.poll() };
             final long typeId = Util.bytesToLong(bits);
@@ -126,11 +119,5 @@ public class ProblemDay16b implements ProblemDay<Long> {
             }
         }
         return res;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day16.txt"));
-        return scanner;
     }
 }

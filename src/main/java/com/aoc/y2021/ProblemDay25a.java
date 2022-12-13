@@ -2,17 +2,12 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ProblemDay25a implements ProblemDay<Integer> {
-
-    private Scanner scanner;
+public class ProblemDay25a extends ProblemDay<Integer> {
 
     @Override
     public Integer solve() {
@@ -83,11 +78,5 @@ public class ProblemDay25a implements ProblemDay<Integer> {
             IntStream.range(0, map.size()).forEach(row -> map.get(row).set(finalCol, newLine.get(row)));
         }
         return moves;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day25.txt"));
-        return scanner;
     }
 }

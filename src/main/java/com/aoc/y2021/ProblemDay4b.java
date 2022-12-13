@@ -4,20 +4,12 @@ import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class ProblemDay4b implements ProblemDay<Integer> {
+public class ProblemDay4b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final List<Integer> numbers = Arrays.stream(scanner.nextLine().split(","))
                 .map(Integer::parseInt)
@@ -47,12 +39,6 @@ public class ProblemDay4b implements ProblemDay<Integer> {
         }
 
         return lastWin.sumUnmarkedNumbers() * lastNum;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day4.txt"));
-        return scanner;
     }
 
     private static class BingoBoard {

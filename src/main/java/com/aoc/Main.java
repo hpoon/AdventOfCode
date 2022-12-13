@@ -2,18 +2,12 @@ package com.aoc;
 
 import com.aoc.y2022.*;
 
-import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Main {
 
-    private static final Map<String, ProblemDay<?>> PROBLEMS = new HashMap<String, ProblemDay<?>>() {{
+    private static final Map<String, ProblemDay<?>> PROBLEMS = new HashMap<>() {{
         put("1a", new ProblemDay1a());
         put("1b", new ProblemDay1b());
         put("2a", new ProblemDay2a());
@@ -65,14 +59,6 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        final ProblemDay<?> problem = PROBLEMS.get("12b");
-        try (final Scanner ignored = problem.getProblemInputStream()) {
-            Instant t1 = Instant.now();
-            System.out.println(problem.solve());
-            Instant t2 = Instant.now();
-            System.out.printf("Problem solved in: %d ms%n", Duration.between(t1, t2).toMillis());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PROBLEMS.get("12b").run();
     }
 }

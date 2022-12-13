@@ -3,14 +3,9 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import com.aoc.Util;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
+public class ProblemDay3a extends ProblemDay<Integer> {
 
-public class ProblemDay3a implements ProblemDay<Integer> {
-
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final int zeros[] = new int[12];
         final int ones[] = new int[12];
@@ -48,9 +43,4 @@ public class ProblemDay3a implements ProblemDay<Integer> {
         return gamma * epsilon;
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day3.txt"));
-        return scanner;
-    }
 }

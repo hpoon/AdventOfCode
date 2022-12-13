@@ -3,15 +3,11 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay11a implements ProblemDay<Integer> {
+public class ProblemDay11a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final List<List<Integer>> field = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -78,12 +74,6 @@ public class ProblemDay11a implements ProblemDay<Integer> {
         }
 
         return flashes;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day11.txt"));
-        return scanner;
     }
 
     private void addIfPossible(final int row,

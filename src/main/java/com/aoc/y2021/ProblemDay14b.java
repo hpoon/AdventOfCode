@@ -1,17 +1,11 @@
 package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
-public class ProblemDay14b implements ProblemDay<Long> {
-
-    private Scanner scanner;
+public class ProblemDay14b extends ProblemDay<Long> {
 
     public Long solve() {
         String sequence = scanner.nextLine();
@@ -55,12 +49,6 @@ public class ProblemDay14b implements ProblemDay<Long> {
         counts.put(last.charAt(0), counts.getOrDefault(last.charAt(0), 0L) + 1);
         return counts.values().stream().max(Comparator.naturalOrder()).get() -
                 counts.values().stream().min(Comparator.naturalOrder()).get();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day14.txt"));
-        return scanner;
     }
 
 }

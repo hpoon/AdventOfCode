@@ -2,8 +2,6 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,10 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.Set;
 
-public class ProblemDay24a implements ProblemDay<Long> {
+public class ProblemDay24a extends ProblemDay<Long> {
 
     private static final Set<String> VARIABLES = new HashSet<String>() {{
         add("w"); add("x"); add("y"); add("z");
@@ -23,8 +20,6 @@ public class ProblemDay24a implements ProblemDay<Long> {
     private static final Map<String, Integer> MAPPING = new HashMap<String, Integer>() {{
         put("w", 0); put("x", 1); put("y", 2); put("z", 3);
     }};
-
-    private Scanner scanner;
 
     @Override
     public Long solve() {
@@ -48,9 +43,7 @@ public class ProblemDay24a implements ProblemDay<Long> {
             instructions.add(new Block(check, div, add));
         }
 
-
-
-//        if z % 26 + chk != inp:
+//    if z % 26 + chk != inp:
 //        z //= div
 //        z *= 26
 //        z += inp + add
@@ -167,11 +160,5 @@ public class ProblemDay24a implements ProblemDay<Long> {
             return Objects.hash(place, Arrays.hashCode(vars));
         }
 
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day24.txt"));
-        return scanner;
     }
 }

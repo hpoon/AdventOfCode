@@ -2,16 +2,11 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 import com.aoc.Util;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ProblemDay20a implements ProblemDay<Integer> {
-
-    private Scanner scanner;
+public class ProblemDay20a extends ProblemDay<Integer> {
 
     @Override
     public Integer solve() {
@@ -141,11 +136,5 @@ public class ProblemDay20a implements ProblemDay<Integer> {
             }
             return algorithm[position];
         }
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day20.txt"));
-        return scanner;
     }
 }

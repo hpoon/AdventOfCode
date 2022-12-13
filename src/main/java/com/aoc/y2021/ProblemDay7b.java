@@ -1,18 +1,12 @@
 package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
-public class ProblemDay7b implements ProblemDay<Long> {
-
-    private Scanner scanner;
+public class ProblemDay7b extends ProblemDay<Long> {
 
     public Long solve() {
         final List<Integer> positions = Arrays.stream(scanner.nextLine().split(","))
@@ -30,12 +24,6 @@ public class ProblemDay7b implements ProblemDay<Long> {
                 .collect(Collectors.toList());
 
         return costs.stream().min(Long::compare).orElse(0L);
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day7.txt"));
-        return scanner;
     }
 
 }

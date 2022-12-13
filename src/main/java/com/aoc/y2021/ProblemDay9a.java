@@ -1,17 +1,12 @@
 package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class ProblemDay9a implements ProblemDay<Integer> {
+public class ProblemDay9a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final List<List<Integer>> field = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -43,12 +38,6 @@ public class ProblemDay9a implements ProblemDay<Integer> {
         }
 
         return risk;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day9.txt"));
-        return scanner;
     }
 
 }

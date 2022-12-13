@@ -2,11 +2,9 @@ package com.aoc.y2022;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay2b implements ProblemDay<Integer> {
+public class ProblemDay2b extends ProblemDay<Integer> {
 
     private static final Map<Set<String>, Integer> SCORE = new HashMap<>() {{
         put(new HashSet<>() {{ add("A"); add("X"); }}, 4);    // Rock / rock = 1 + 3
@@ -32,9 +30,7 @@ public class ProblemDay2b implements ProblemDay<Integer> {
         put(new HashSet<>() {{ add("C"); add("Z"); }}, "X");  // Scissors / win = rock
     }};
 
-
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int score = 0;
         while (scanner.hasNextLine()) {
@@ -47,9 +43,4 @@ public class ProblemDay2b implements ProblemDay<Integer> {
         return score;
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day2.txt"));
-        return scanner;
-    }
 }

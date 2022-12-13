@@ -1,21 +1,23 @@
 package com.aoc.y2022;
 
+import com.aoc.NTree;
 import com.aoc.ProblemDay;
-import com.aoc.TreeNode;
-import com.google.common.base.Joiner;
 import lombok.Value;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay7a implements ProblemDay<Integer> {
+public class ProblemDay7a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
-        TreeNode<File> root = null;
-        TreeNode<File> cwd = new TreeNode<>(new File("", 0));
+        NTree<File> tree = parseTree();
+        Map<String, Integer> dirToSizes = tree.score(File::getSize);
+        return dirToSizes.values().stream().filter(size -> size <= 100000).mapToInt(Integer::intValue).sum();
+    }
+
+    private NTree<File> parseTree() {
+        NTree.NTreeNode<File> root = null;
+        NTree.NTreeNode<File> cwd = new NTree.NTreeNode<>(new File("", 0));
         while (scanner.hasNextLine()) {
             String str = scanner.nextLine();
             char first = str.charAt(0);
@@ -25,7 +27,7 @@ public class ProblemDay7a implements ProblemDay<Integer> {
                 if (cmd.equals("cd")) {
                     String dir = cmds[2];
                     if (dir.equals("/")) {
-                        cwd = new TreeNode<>(new File("", 0));
+                        cwd = new NTree.NTreeNode<>(new File("", 0));
                         root = cwd;
                     } else if (dir.equals("..")) {
                         cwd = cwd.getParent().orElseThrow();
@@ -44,28 +46,7 @@ public class ProblemDay7a implements ProblemDay<Integer> {
                 }
             }
         }
-
-        Map<String, Integer> dirToSizes = new HashMap<>();
-        size(root, dirToSizes, "");
-        return dirToSizes.values().stream().filter(size -> size <= 100000).mapToInt(Integer::intValue).sum();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day7.txt"));
-        return scanner;
-    }
-
-    private int size(TreeNode<File> node, Map<String, Integer> dirToSizes, String path) {
-        File file = node.getValue();
-        int size = file.getSize();
-        for (TreeNode<File> child : node.getNodes()) {
-            size += size(child, dirToSizes, Joiner.on("/").join(path, child.getValue().getName()));
-        }
-        if (file.getSize() == 0) {
-            dirToSizes.put(path, size);
-        }
-        return size;
+        return new NTree<>(root);
     }
 
     @Value
@@ -74,6 +55,11 @@ public class ProblemDay7a implements ProblemDay<Integer> {
         private String name;
 
         private int size;
+
+        @Override
+        public String toString() {
+            return name;
+        }
 
     }
 

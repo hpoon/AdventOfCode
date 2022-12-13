@@ -3,23 +3,18 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ProblemDay15b implements ProblemDay<Integer> {
+public class ProblemDay15b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         // Recursion relation:
         // risk[y][x] = min(risk[y-1][x], risk[y][x-1], risk[y+1][x], risk[y][x+1]);
@@ -130,11 +125,5 @@ public class ProblemDay15b implements ProblemDay<Integer> {
         public int compareTo(final Node o) {
             return Integer.compare(this.risk, o.getRisk());
         }
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day15.txt"));
-        return scanner;
     }
 }

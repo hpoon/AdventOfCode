@@ -3,19 +3,15 @@ package com.aoc.y2022;
 import com.aoc.Point2D;
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ProblemDay9b implements ProblemDay<Integer> {
+public class ProblemDay9b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         Rope rope = new Rope();
         Set<Point2D> tailVisited = new HashSet<>();
@@ -28,12 +24,6 @@ public class ProblemDay9b implements ProblemDay<Integer> {
             }
         }
         return tailVisited.size();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day9.txt"));
-        return scanner;
     }
 
     private static class Rope {

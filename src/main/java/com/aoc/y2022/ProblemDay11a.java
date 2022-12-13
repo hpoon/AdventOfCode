@@ -8,16 +8,13 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ProblemDay11a implements ProblemDay<Integer> {
+public class ProblemDay11a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         List<Monkey> monkeys = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -38,12 +35,6 @@ public class ProblemDay11a implements ProblemDay<Integer> {
                 .map(Monkey::getInspected)
                 .forEach(maxes::add);
         return maxes.poll() * maxes.poll();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day11.txt"));
-        return scanner;
     }
 
     @RequiredArgsConstructor

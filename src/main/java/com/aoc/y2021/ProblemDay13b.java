@@ -3,18 +3,12 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class ProblemDay13b implements ProblemDay<String> {
-
-    private Scanner scanner;
+public class ProblemDay13b extends ProblemDay<String> {
 
     public String solve() {
         int maxX = 0;
@@ -91,12 +85,6 @@ public class ProblemDay13b implements ProblemDay<String> {
             msg.append("\n");
         }
         return msg.toString();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day13.txt"));
-        return scanner;
     }
 
 }

@@ -1,23 +1,18 @@
 package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ProblemDay8b implements ProblemDay<Integer> {
+public class ProblemDay8b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int sum = 0;
         while (scanner.hasNextLine()) {
@@ -118,12 +113,6 @@ public class ProblemDay8b implements ProblemDay<Integer> {
                     .reduce("", (a, b) -> a + b));
         }
         return sum;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day8.txt"));
-        return scanner;
     }
 
 }

@@ -3,16 +3,12 @@ package com.aoc.y2022;
 import com.aoc.Matrix;
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ProblemDay8b implements ProblemDay<Integer> {
+public class ProblemDay8b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         Matrix<Integer> grid = new Matrix<>(
                 scanner,
@@ -40,11 +36,6 @@ public class ProblemDay8b implements ProblemDay<Integer> {
                 stream -> stream.mapToInt(Matrix.Element::getValue).max().orElse(-1));
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day8.txt"));
-        return scanner;
-    }
 
     private int countLineOfSight(Matrix<Integer> grid,
                                  Matrix.Element<Integer> element,

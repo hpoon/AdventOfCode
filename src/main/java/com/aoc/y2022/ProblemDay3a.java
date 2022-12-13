@@ -3,14 +3,11 @@ package com.aoc.y2022;
 import com.aoc.ProblemDay;
 import com.google.common.collect.Sets;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay3a implements ProblemDay<Integer> {
+public class ProblemDay3a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int priority = 0;
         while (scanner.hasNextLine()) {
@@ -29,12 +26,6 @@ public class ProblemDay3a implements ProblemDay<Integer> {
             }
         }
         return priority;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day3.txt"));
-        return scanner;
     }
 
     private Set<Character> convertToSet(final String str, int start, int end) {

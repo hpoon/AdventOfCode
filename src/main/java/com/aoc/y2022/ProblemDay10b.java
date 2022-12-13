@@ -3,13 +3,7 @@ package com.aoc.y2022;
 import com.aoc.ProblemDay;
 import com.google.common.collect.Range;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
-
-public class ProblemDay10b implements ProblemDay<String> {
-
-    private Scanner scanner;
+public class ProblemDay10b extends ProblemDay<String> {
 
     public String solve() {
         int cycles = 0;
@@ -38,12 +32,6 @@ public class ProblemDay10b implements ProblemDay<String> {
         if (cycle % width == 0) {
             sb.append("\n");
         }
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day10.txt"));
-        return scanner;
     }
 
 }

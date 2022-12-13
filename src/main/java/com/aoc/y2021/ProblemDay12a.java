@@ -3,20 +3,15 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
-public class ProblemDay12a implements ProblemDay<Integer> {
+public class ProblemDay12a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final Map<String, Set<String>> graph = new HashMap<>();
         while (scanner.hasNextLine()) {
@@ -59,12 +54,6 @@ public class ProblemDay12a implements ProblemDay<Integer> {
             }
         }
         return paths;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day12.txt"));
-        return scanner;
     }
 
 }

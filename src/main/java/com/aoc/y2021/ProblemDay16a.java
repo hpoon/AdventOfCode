@@ -2,20 +2,15 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 import com.aoc.Util;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class ProblemDay16a implements ProblemDay<Integer> {
+public class ProblemDay16a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final Map<String, int[]> letterToBinary = new HashMap<String, int[]>() {{
             put("0", new int[]{0, 0, 0, 0});
@@ -98,11 +93,5 @@ public class ProblemDay16a implements ProblemDay<Integer> {
             }
         }
         return versions;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day16.txt"));
-        return scanner;
     }
 }

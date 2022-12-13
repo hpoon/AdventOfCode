@@ -3,21 +3,16 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Scanner;
 
-public class ProblemDay9b implements ProblemDay<Integer> {
+public class ProblemDay9b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final List<List<Integer>> field = new ArrayList<>();
         final List<List<Boolean>> visited = new ArrayList<>();
@@ -80,12 +75,6 @@ public class ProblemDay9b implements ProblemDay<Integer> {
         }
 
         return basins.poll() * basins.poll() * basins.poll();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day9.txt"));
-        return scanner;
     }
 
 }

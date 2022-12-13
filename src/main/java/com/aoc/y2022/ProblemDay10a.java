@@ -3,17 +3,13 @@ package com.aoc.y2022;
 import com.aoc.ProblemDay;
 import com.google.common.collect.ImmutableSet;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 
-public class ProblemDay10a implements ProblemDay<Integer> {
+public class ProblemDay10a extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int cycles = 0;
         int x = 1;
@@ -39,12 +35,6 @@ public class ProblemDay10a implements ProblemDay<Integer> {
         }
         Set<Integer> scoring = ImmutableSet.of(20, 60, 100, 140, 180, 220);
         return scoring.stream().mapToInt(cycle -> cycle * cycleToX.get(cycle)).sum();
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day10.txt"));
-        return scanner;
     }
 
 }

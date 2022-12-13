@@ -2,22 +2,17 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class ProblemDay22b implements ProblemDay<Long> {
-
-    private Scanner scanner;
+public class ProblemDay22b extends ProblemDay<Long> {
 
     @Override
     public Long solve() {
@@ -207,9 +202,4 @@ public class ProblemDay22b implements ProblemDay<Long> {
 
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day22.txt"));
-        return scanner;
-    }
 }

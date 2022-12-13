@@ -3,18 +3,13 @@ package com.aoc.y2021;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
-public class ProblemDay5b implements ProblemDay<Integer> {
+public class ProblemDay5b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         final List<Pair<Pair<Integer, Integer>, Pair<Integer, Integer>>> lines = new ArrayList<>();
         final List<LineType> types = new ArrayList<>();
@@ -59,12 +54,6 @@ public class ProblemDay5b implements ProblemDay<Integer> {
         }
 
         return countOverlaps(canvas);
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day5.txt"));
-        return scanner;
     }
 
     private boolean isDiagonal(final Pair<Integer, Integer> p1, final Pair<Integer, Integer> p2) {

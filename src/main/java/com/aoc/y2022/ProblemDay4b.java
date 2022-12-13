@@ -3,14 +3,9 @@ package com.aoc.y2022;
 import com.aoc.ProblemDay;
 import com.google.common.collect.Range;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
+public class ProblemDay4b extends ProblemDay<Integer> {
 
-public class ProblemDay4b implements ProblemDay<Integer> {
-
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int intersected = 0;
         while (scanner.hasNextLine()) {
@@ -26,10 +21,5 @@ public class ProblemDay4b implements ProblemDay<Integer> {
         return intersected;
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day4.txt"));
-        return scanner;
-    }
 
 }

@@ -1,15 +1,11 @@
 package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Stack;
 
-public class ProblemDay10a implements ProblemDay<Integer> {
+public class ProblemDay10a extends ProblemDay<Integer> {
 
     private Map<String, Integer> BRACKET_TO_POINTS = new HashMap<String, Integer>() {{
         put(")", 3);
@@ -25,8 +21,7 @@ public class ProblemDay10a implements ProblemDay<Integer> {
         put(">", "<");
     }};
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int points = 0;
         while (scanner.hasNextLine()) {
@@ -48,12 +43,6 @@ public class ProblemDay10a implements ProblemDay<Integer> {
         }
 
         return points;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day10.txt"));
-        return scanner;
     }
 
 }

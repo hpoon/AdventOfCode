@@ -2,14 +2,9 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
+public class ProblemDay2a extends ProblemDay<Integer> {
 
-public class ProblemDay2a implements ProblemDay<Integer> {
-
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         int surface = 0;
         int depth = 0;
@@ -28,9 +23,4 @@ public class ProblemDay2a implements ProblemDay<Integer> {
         return surface * depth;
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day2.txt"));
-        return scanner;
-    }
 }

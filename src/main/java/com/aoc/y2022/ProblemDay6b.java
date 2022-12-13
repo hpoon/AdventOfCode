@@ -2,14 +2,11 @@ package com.aoc.y2022;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay6b implements ProblemDay<Integer> {
+public class ProblemDay6b extends ProblemDay<Integer> {
 
-    private Scanner scanner;
-
+    @Override
     public Integer solve() {
         String str = scanner.nextLine();
         Queue<Character> queue = new LinkedList<>();
@@ -34,12 +31,6 @@ public class ProblemDay6b implements ProblemDay<Integer> {
             }
         }
         return -1;
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day6.txt"));
-        return scanner;
     }
 
 }

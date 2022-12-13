@@ -3,16 +3,11 @@ package com.aoc.y2022;
 import com.aoc.Matrix;
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class ProblemDay8a implements ProblemDay<Long> {
-
-    private Scanner scanner;
+public class ProblemDay8a extends ProblemDay<Long> {
 
     public Long solve() {
         Matrix<Integer> grid = new Matrix<>(
@@ -47,12 +42,6 @@ public class ProblemDay8a implements ProblemDay<Long> {
         return grid.score(
                 p -> grid.get(p) > smallestMax.get(p),
                 Stream::count);
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day8.txt"));
-        return scanner;
     }
 
 }

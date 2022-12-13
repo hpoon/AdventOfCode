@@ -4,8 +4,6 @@ import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,12 +12,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-public class ProblemDay23b implements ProblemDay<Integer> {
+public class ProblemDay23b extends ProblemDay<Integer> {
 
     private static final int STACK_LIMIT = 4;
 
@@ -41,8 +38,6 @@ public class ProblemDay23b implements ProblemDay<Integer> {
     private static final Map<Character, Integer> COST = new HashMap<Character, Integer>() {{
         put('A', 1); put('B', 10); put('C', 100); put('D', 1000);
     }};
-
-    private Scanner scanner;
 
     @Override
     public Integer solve() {
@@ -284,9 +279,4 @@ public class ProblemDay23b implements ProblemDay<Integer> {
         }
     }
 
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day23.txt"));
-        return scanner;
-    }
 }

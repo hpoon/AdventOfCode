@@ -1,17 +1,11 @@
 package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class ProblemDay21a implements ProblemDay<Integer> {
-
-    private Scanner scanner;
+public class ProblemDay21a extends ProblemDay<Integer> {
 
     @Override
     public Integer solve() {
@@ -91,11 +85,5 @@ public class ProblemDay21a implements ProblemDay<Integer> {
         private void reset() {
             IntStream.range(1, 101).forEach(i -> dice.add(i));
         }
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day21.txt"));
-        return scanner;
     }
 }

@@ -3,13 +3,9 @@ package com.aoc.y2022;
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class ProblemDay5a implements ProblemDay<String> {
-
-    private Scanner scanner;
+public class ProblemDay5a extends ProblemDay<String> {
 
     public String solve() {
         int line = 1;
@@ -59,12 +55,6 @@ public class ProblemDay5a implements ProblemDay<String> {
             ans += stacks.get(i).peek();
         }
         return ans.replace("[", "").replace("]", "");
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        this.scanner = new Scanner(Paths.get(".", "src/main/resources/y2022/day5.txt"));
-        return scanner;
     }
 
 }

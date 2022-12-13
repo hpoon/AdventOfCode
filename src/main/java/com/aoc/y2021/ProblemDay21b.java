@@ -2,13 +2,7 @@ package com.aoc.y2021;
 
 import com.aoc.ProblemDay;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Scanner;
-
-public class ProblemDay21b implements ProblemDay<Long> {
-
-    private Scanner scanner;
+public class ProblemDay21b extends ProblemDay<Long> {
 
     private Long[] count(final int p1,
                          final int p2,
@@ -58,11 +52,5 @@ public class ProblemDay21b implements ProblemDay<Long> {
         final Long[] count = count(p1, p2, 0, 0, 0, state);
 
         return Math.max(count[0], count[1]);
-    }
-
-    @Override
-    public Scanner getProblemInputStream() throws IOException {
-        scanner = new Scanner(Paths.get(".", "src/main/resources/y2021/day21.txt"));
-        return scanner;
     }
 }
