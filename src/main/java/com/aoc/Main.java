@@ -3,6 +3,10 @@ package com.aoc;
 import com.aoc.y2022.*;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -32,8 +36,8 @@ public class Main {
         put("10b", new ProblemDay10b());
         put("11a", new ProblemDay11a());
         put("11b", new ProblemDay11b());
-//        put("12a", new ProblemDay12a());
-//        put("12b", new ProblemDay12b());
+        put("12a", new ProblemDay12a());
+        put("12b", new ProblemDay12b());
 //        put("13a", new ProblemDay13a());
 //        put("13b", new ProblemDay13b());
 //        put("14a", new ProblemDay14a());
@@ -61,9 +65,12 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        final ProblemDay<?> problem = PROBLEMS.get("11b");
+        final ProblemDay<?> problem = PROBLEMS.get("12b");
         try (final Scanner ignored = problem.getProblemInputStream()) {
+            Instant t1 = Instant.now();
             System.out.println(problem.solve());
+            Instant t2 = Instant.now();
+            System.out.printf("Problem solved in: %d ms%n", Duration.between(t1, t2).toMillis());
         } catch (IOException e) {
             e.printStackTrace();
         }
