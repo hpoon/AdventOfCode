@@ -36,8 +36,8 @@ public class Main {
         put("13b", new ProblemDay13b());
         put("14a", new ProblemDay14a());
         put("14b", new ProblemDay14b());
-//        put("15a", new ProblemDay15a());
-//        put("15b", new ProblemDay15b());
+        put("15a", new ProblemDay15a());
+        put("15b", new ProblemDay15b());
 //        put("16a", new ProblemDay16a());
 //        put("16b", new ProblemDay16b());
 //        put("17a", new ProblemDay17a());
@@ -59,7 +59,7 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("14b").run();
+        PROBLEMS.get("15b").run();
     }
 
 }
