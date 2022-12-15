@@ -1,6 +1,7 @@
 package com.aoc.y2022;
 
 import com.aoc.Matrix;
+import com.aoc.MatrixElement;
 import com.aoc.ProblemDay;
 
 import java.util.stream.Collectors;
@@ -33,12 +34,12 @@ public class ProblemDay8b extends ProblemDay<Integer> {
                 .apply(p -> p.getValue() * bottomCount.get(p));
         return score.score(
                 p -> true,
-                stream -> stream.mapToInt(Matrix.Element::getValue).max().orElse(-1));
+                stream -> stream.mapToInt(MatrixElement::getValue).max().orElse(-1));
     }
 
 
     private int countLineOfSight(Matrix<Integer> grid,
-                                 Matrix.Element<Integer> element,
+                                 MatrixElement<Integer> element,
                                  int start,
                                  int end,
                                  boolean reverse,

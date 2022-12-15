@@ -1,6 +1,7 @@
 package com.aoc.y2022;
 
 import com.aoc.Matrix;
+import com.aoc.MatrixElement;
 import com.aoc.ProblemDay;
 import com.google.common.collect.ImmutableMap;
 
@@ -17,11 +18,11 @@ public class ProblemDay12b extends ProblemDay<Integer> {
     public Integer solve() {
         Function<String, List<Integer>> function = line -> line.chars().boxed().collect(Collectors.toList());
         Matrix<Integer> map = new Matrix<>(scanner, function);
-        List<Matrix.Element<Integer>> starts = map.get((int)'a');
-        Matrix.Element<Integer> end = map.get((int) 'E').get(0);
+        List<MatrixElement<Integer>> starts = map.get((int)'a');
+        MatrixElement<Integer> end = map.get((int) 'E').get(0);
         int min = Integer.MAX_VALUE;
-        for (Matrix.Element<Integer> start : starts) {
-            List<Matrix.Element<Integer>> path = map.bfs(
+        for (MatrixElement<Integer> start : starts) {
+            List<MatrixElement<Integer>> path = map.bfs(
                     start,
                     end,
                     this::isValidPath,

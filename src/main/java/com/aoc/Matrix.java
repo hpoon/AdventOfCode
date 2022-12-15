@@ -1,7 +1,6 @@
 package com.aoc;
 
 import com.google.common.collect.Sets;
-import lombok.Value;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -30,16 +29,16 @@ public class Matrix<T> {
         return matrix.get(row).get(col);
     }
 
-    public T get(Element<T> element) {
+    public T get(MatrixElement<T> element) {
         return get(element.getRow(), element.getCol());
     }
 
-    public List<Element<T>> get(T value) {
-        List<Element<T>> results = new ArrayList<>();
+    public List<MatrixElement<T>> get(T value) {
+        List<MatrixElement<T>> results = new ArrayList<>();
         for (int row = 0; row < matrix.size(); row++) {
             for (int col = 0; col < matrix.get(row).size(); col++) {
                 if (matrix.get(row).get(col).equals(value)) {
-                    results.add(new Element<>(row, col, value));
+                    results.add(new MatrixElement<>(row, col, value));
                 }
             }
         }
@@ -54,37 +53,37 @@ public class Matrix<T> {
         return matrix.get(row).size();
     }
 
-    public Matrix<T> apply(Function<Element<T>, T> kernel) {
+    public Matrix<T> apply(Function<MatrixElement<T>, T> kernel) {
         List<List<T>> result = new ArrayList<>();
         for (int row = 0; row < matrix.size(); row++) {
             List<T> resultRow = new ArrayList<>();
             for (int col = 0; col < matrix.get(row).size(); col++) {
-                resultRow.add(kernel.apply(new Element<>(row, col, get(row, col))));
+                resultRow.add(kernel.apply(new MatrixElement<>(row, col, get(row, col))));
             }
             result.add(resultRow);
         }
         return new Matrix<>(result);
     }
 
-    public <U> U score(Predicate<Element<T>> condition,
-                      Function<Stream<Element<T>>, U> scoringFunction) {
+    public <U> U score(Predicate<MatrixElement<T>> condition,
+                       Function<Stream<MatrixElement<T>>, U> scoringFunction) {
         return scoringFunction.apply(IntStream.range(0, matrix.size())
                 .boxed()
                 .flatMap(row -> IntStream.range(0, matrix.get(row).size())
                         .boxed()
-                        .map(col -> new Element<>(row, col, get(row, col)))
+                        .map(col -> new MatrixElement<>(row, col, get(row, col)))
                         .filter(condition)));
     }
 
-    public List<Element<T>> bfs(Element<T> start,
-                                Element<T> end,
-                                BiFunction<T, T, Boolean> isValidPathFunction,
-                                boolean includeDiagonals) {
-        Queue<Element<T>> queue = new LinkedList<>();
+    public List<MatrixElement<T>> bfs(MatrixElement<T> start,
+                                      MatrixElement<T> end,
+                                      BiFunction<T, T, Boolean> isValidPathFunction,
+                                      boolean includeDiagonals) {
+        Queue<MatrixElement<T>> queue = new LinkedList<>();
         queue.add(start);
-        Set<Element<T>> visited = new HashSet<>();
+        Set<MatrixElement<T>> visited = new HashSet<>();
         visited.add(start);
-        Map<Element<T>, Element<T>> childToParent = new HashMap<>();
+        Map<MatrixElement<T>, MatrixElement<T>> childToParent = new HashMap<>();
         Set<Point2D> directions = Sets.newHashSet(
                 new Point2D(-1, 0),
                 new Point2D(1, 0),
@@ -97,7 +96,7 @@ public class Matrix<T> {
             directions.add(new Point2D(1, 1));
         }
         while (!queue.isEmpty()) {
-            Element<T> element = queue.poll();
+            MatrixElement<T> element = queue.poll();
             int row = element.getRow();
             int col = element.getCol();
             T val = element.getValue();
@@ -107,7 +106,7 @@ public class Matrix<T> {
             directions.stream()
                     .map(dir -> new Point2D(dir.getX() + col,dir.getY() + row))
                     .filter(dir -> withinBounds(dir.getY(), dir.getX()))
-                    .map(dir -> new Element<>(dir.getY(), dir.getX(), get(dir.getY(), dir.getX())))
+                    .map(dir -> new MatrixElement<>(dir.getY(), dir.getX(), get(dir.getY(), dir.getX())))
                     .filter(next -> !visited.contains(next))
                     .filter(next -> isValidPathFunction.apply(val, next.getValue()))
                     .forEach(next -> {
@@ -116,8 +115,8 @@ public class Matrix<T> {
                         visited.add(next);
                     });
         }
-        List<Element<T>> path = new ArrayList<>();
-        Element<T> element = childToParent.get(end);
+        List<MatrixElement<T>> path = new ArrayList<>();
+        MatrixElement<T> element = childToParent.get(end);
         while (element != null) {
             path.add(element);
             element = childToParent.get(element);
@@ -128,13 +127,6 @@ public class Matrix<T> {
 
     private boolean withinBounds(int row, int col) {
         return row >= 0 && row < matrix.size() && col >= 0 && col < matrix.get(row).size();
-    }
-
-    @Value
-    public static class Element<T> {
-        private int row;
-        private int col;
-        private T value;
     }
 
 }
