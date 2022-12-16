@@ -1,6 +1,5 @@
 package com.aoc.y2021;
 
-import com.aoc.ProblemDay;
 
 import java.time.Duration;
 import java.time.Instant;

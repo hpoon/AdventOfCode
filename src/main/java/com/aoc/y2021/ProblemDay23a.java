@@ -1,6 +1,5 @@
 package com.aoc.y2021;
 
-import com.aoc.ProblemDay;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 

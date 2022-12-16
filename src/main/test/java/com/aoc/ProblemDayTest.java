@@ -2,6 +2,8 @@ package com.aoc;
 
 public interface ProblemDayTest {
 
-    void testSolve();
+    void testSolveA();
+
+    void testSolveB();
 
 }

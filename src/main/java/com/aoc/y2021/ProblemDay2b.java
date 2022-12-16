@@ -1,6 +1,5 @@
 package com.aoc.y2021;
 
-import com.aoc.ProblemDay;
 
 public class ProblemDay2b extends ProblemDay<Integer> {
 

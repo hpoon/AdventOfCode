@@ -1,7 +1,5 @@
 package com.aoc.y2021;
 
-import com.aoc.ProblemDay;
-
 public class ProblemDay1a extends ProblemDay<Integer> {
 
     @Override

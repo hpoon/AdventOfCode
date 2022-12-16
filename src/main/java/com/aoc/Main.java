@@ -7,37 +7,22 @@ import java.util.Map;
 
 public class Main {
 
-    private static final Map<String, ProblemDay<?>> PROBLEMS = new HashMap<>() {{
-        put("1a", new ProblemDay1a());
-        put("1b", new ProblemDay1b());
-        put("2a", new ProblemDay2a());
-        put("2b", new ProblemDay2b());
-        put("3a", new ProblemDay3a());
-        put("3b", new ProblemDay3b());
-        put("4a", new ProblemDay4a());
-        put("4b", new ProblemDay4b());
-        put("5a", new ProblemDay5a());
-        put("5b", new ProblemDay5b());
-        put("6a", new ProblemDay6a());
-        put("6b", new ProblemDay6b());
-        put("7a", new ProblemDay7a());
-        put("7b", new ProblemDay7b());
-        put("8a", new ProblemDay8a());
-        put("8b", new ProblemDay8b());
-        put("9a", new ProblemDay9a());
-        put("9b", new ProblemDay9b());
-        put("10a", new ProblemDay10a());
-        put("10b", new ProblemDay10b());
-        put("11a", new ProblemDay11a());
-        put("11b", new ProblemDay11b());
-        put("12a", new ProblemDay12a());
-        put("12b", new ProblemDay12b());
-        put("13a", new ProblemDay13a());
-        put("13b", new ProblemDay13b());
-        put("14a", new ProblemDay14a());
-        put("14b", new ProblemDay14b());
-        put("15a", new ProblemDay15a());
-        put("15b", new ProblemDay15b());
+    private static final Map<String, ProblemDay<?, ?>> PROBLEMS = new HashMap<>() {{
+        put("1", new ProblemDay14());
+        put("2", new ProblemDay15());
+        put("3", new ProblemDay14());
+        put("4", new ProblemDay15());
+        put("5", new ProblemDay14());
+        put("6", new ProblemDay15());
+        put("7", new ProblemDay14());
+        put("8", new ProblemDay15());
+        put("9", new ProblemDay14());
+        put("10", new ProblemDay15());
+        put("11", new ProblemDay14());
+        put("12", new ProblemDay15());
+        put("13", new ProblemDay15());
+        put("14", new ProblemDay14());
+        put("15", new ProblemDay15());
 //        put("16a", new ProblemDay16a());
 //        put("16b", new ProblemDay16b());
 //        put("17a", new ProblemDay17a());
@@ -59,7 +44,7 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("15b").run();
+        PROBLEMS.get("15").run('b');
     }
 
 }

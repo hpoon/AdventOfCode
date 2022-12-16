@@ -1,6 +1,5 @@
 package com.aoc.y2021;
 
-import com.aoc.ProblemDay;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;

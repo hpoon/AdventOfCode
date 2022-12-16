@@ -1,6 +1,5 @@
 package com.aoc.y2021;
 
-import com.aoc.ProblemDay;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
