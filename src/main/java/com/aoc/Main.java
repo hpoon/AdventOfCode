@@ -23,7 +23,7 @@ public class Main {
         put("13", new ProblemDay15());
         put("14", new ProblemDay14());
         put("15", new ProblemDay15());
-//        put("16a", new ProblemDay16a());
+        put("16", new ProblemDay16());
 //        put("16b", new ProblemDay16b());
 //        put("17a", new ProblemDay17a());
 //        put("17b", new ProblemDay17b());
@@ -44,7 +44,7 @@ public class Main {
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("15").run('b');
+        PROBLEMS.get("16").run('b');
     }
 
 }
