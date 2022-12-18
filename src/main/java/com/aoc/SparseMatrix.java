@@ -18,6 +18,10 @@ public class SparseMatrix<T> {
         }
     }
 
+    public SparseMatrix() {
+        matrix = new HashMap<>();
+    }
+
     public void put(MatrixElement<T> element) {
         matrix.put(element, element.getValue());
     }
