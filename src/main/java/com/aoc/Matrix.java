@@ -13,6 +13,10 @@ public class Matrix<T> {
 
     private final List<List<T>> matrix;
 
+    public Matrix() {
+        matrix = new ArrayList<>();
+    }
+
     public Matrix(Scanner scanner, Function<String, List<T>> rowParser) {
         matrix = new ArrayList<>();
         while (scanner.hasNextLine()) {
@@ -23,6 +27,10 @@ public class Matrix<T> {
 
     private Matrix(List<List<T>> matrix) {
         this.matrix = matrix;
+    }
+
+    public void addRow(List<T> row) {
+        matrix.add(row);
     }
 
     public T get(int row, int col) {
@@ -43,6 +51,32 @@ public class Matrix<T> {
             }
         }
         return results;
+    }
+
+    public List<Integer> getRowBounds(int row, Function<T, Boolean> isValidFunction) {
+        List<Integer> indices = new ArrayList<>();
+        for (int col = 0; col < matrix.get(row).size(); col++) {
+            if (!withinBounds(row, col)) {
+                continue;
+            }
+            if (isValidFunction.apply(get(row, col))) {
+                indices.add(col);
+            }
+        }
+        return indices;
+    }
+
+    public List<Integer> getColBounds(int col, Function<T, Boolean> isValidFunction) {
+        List<Integer> indices = new ArrayList<>();
+        for (int row = 0; row < matrix.size(); row++) {
+            if (!withinBounds(row, col)) {
+                continue;
+            }
+            if (isValidFunction.apply(get(row, col))) {
+                indices.add(row);
+            }
+        }
+        return indices;
     }
 
     public int height() {
@@ -123,6 +157,21 @@ public class Matrix<T> {
         }
         Collections.reverse(path);
         return path;
+    }
+
+    public Matrix<T> copy(int row, int col, int width, int height) {
+        if (!withinBounds(row, col) || !withinBounds(row + height - 1, col + width - 1)) {
+            throw new RuntimeException("Out of bounds");
+        }
+        Matrix<T> copy = new Matrix<>();
+        for (int r = row; r < row + height; r++) {
+            List<T> l = new ArrayList<>();
+            for (int c = col; c < col + width; c++) {
+                l.add(get(r, c));
+            }
+            copy.addRow(l);
+        }
+        return copy;
     }
 
     private boolean withinBounds(int row, int col) {
