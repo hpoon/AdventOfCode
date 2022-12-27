@@ -42,10 +42,35 @@ public class SparseMatrix<T> {
         return matrix.containsKey(value);
     }
 
+    public Range<Integer> xRange() {
+        int min = matrix.keySet().stream().map(MatrixElement::getCol).min(Comparator.naturalOrder()).orElseThrow();
+        int max = matrix.keySet().stream().map(MatrixElement::getCol).max(Comparator.naturalOrder()).orElseThrow();
+        return Range.closed(min, max);
+    }
+
     public Range<Integer> yRange() {
         int min = matrix.keySet().stream().map(MatrixElement::getRow).min(Comparator.naturalOrder()).orElseThrow();
         int max = matrix.keySet().stream().map(MatrixElement::getRow).max(Comparator.naturalOrder()).orElseThrow();
         return Range.closed(min, max);
+    }
+
+    public int width() {
+        Range<Integer> range = xRange();
+        return range.upperEndpoint() - range.lowerEndpoint() + 1;
+    }
+
+    public int height() {
+        Range<Integer> range = yRange();
+        return range.upperEndpoint() - range.lowerEndpoint() + 1;
+    }
+
+    public Set<MatrixElement<T>> getElements() {
+        return matrix.keySet();
+    }
+
+    public void replace(MatrixElement<T> oldElement, MatrixElement<T> newElement) {
+        matrix.remove(oldElement);
+        matrix.put(newElement, newElement.getValue());
     }
 
 }

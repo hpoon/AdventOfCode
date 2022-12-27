@@ -30,14 +30,13 @@ public class Main {
         put("20", new ProblemDay20());
         put("21", new ProblemDay21());
         put("22", new ProblemDay22());
-//        put("23a", new ProblemDay23a());
-//        put("23b", new ProblemDay23b());
+        put("23", new ProblemDay23());
 //        put("24a", new ProblemDay24a());
 //        put("25a", new ProblemDay25a());
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("22").run('b');
+        PROBLEMS.get("23").run('b');
     }
 
 }
