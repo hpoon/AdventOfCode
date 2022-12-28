@@ -11,24 +11,22 @@ import java.util.Map;
 public class ProblemDay25 extends ProblemDay<String, Integer> {
 
     private static final int BASE = 5;
-    private static final Map<Character, Long> SNAFU_TO_LONG_MAPPING = ImmutableMap.of(
-            '0', 0L,
-            '1', 1L,
-            '2', 2L,
-            '-', -1L,
-            '=', -2L);
-    private static final Map<Long, Character> LONG_TO_SNAFU_MAPPING = ImmutableMap.of(
-            -2L, '=',
-            -1L, '-',
-            0L, '0',
-            1L, '1',
-            2L, '2');
+    private static final Map<Character, Integer> SNAFU_TO_INT_MAPPING = ImmutableMap.of(
+            '0', 0,
+            '1', 1,
+            '2', 2,
+            '-', -1,
+            '=', -2);
+    private static final Map<Integer, Character> INT_TO_SNAFU_MAPPING = ImmutableMap.of(
+            -2, '=',
+            -1, '-',
+            0, '0',
+            1, '1',
+            2, '2');
 
     @Override
     public String solveA() {
-        List<Long> longs = parse();
-        long sum = longs.stream().reduce(Long::sum).orElseThrow();
-        return longToSnafu(sum);
+        return solve();
     }
 
     @Override
@@ -36,40 +34,39 @@ public class ProblemDay25 extends ProblemDay<String, Integer> {
         throw new NotImplementedException("Day 25 has no part B");
     }
 
-    private List<Long> parse() {
-        List<Long> longs = new ArrayList<>();
+    private String solve() {
+        List<String> snafus = new ArrayList<>();
         while (scanner.hasNextLine()) {
-            longs.add(snafuToLong(scanner.nextLine()));
+            snafus.add(scanner.nextLine());
         }
-        return longs;
+        return snafus.stream().reduce(this::add).orElseThrow();
     }
 
-    private long snafuToLong(String snafu) {
-        long sum = 0;
-        for (int i = 0; i < snafu.length(); i++) {
-            long digit = SNAFU_TO_LONG_MAPPING.get(snafu.charAt(i));
-            sum += digit * Math.pow(BASE, snafu.length() - i - 1);
-        }
-        return sum;
-    }
-
-    private String longToSnafu(long longNum) {
-        long num = longNum;
-        String result = "";
+    private String add(String snafu1, String snafu2) {
+        int idx = 0;
+        StringBuilder total = new StringBuilder();
+        int carry = 0;
         while (true) {
-            long div = num / BASE;
-            long mod = num % BASE;
-            if (mod > 2) {
-                div++;
-                mod -= BASE;
-            }
-            result = LONG_TO_SNAFU_MAPPING.get(mod) + result;
-            num = div;
-            if (div == 0) {
+            int i1 = snafu1.length() - idx - 1;
+            int i2 = snafu2.length() - idx - 1;
+            if (i1 < 0 && i2 < 0) {
                 break;
             }
+            int digit1 = i1 >= 0 ? SNAFU_TO_INT_MAPPING.get(snafu1.charAt(i1)) : 0;
+            int digit2 = i2 >= 0 ? SNAFU_TO_INT_MAPPING.get(snafu2.charAt(i2)) : 0;
+            int add = digit1 + digit2 + carry;
+            carry = 0;
+            if (add > 2) {
+                add -= BASE;
+                carry = 1;
+            } else if (add < -2) {
+                add += BASE;
+                carry = -1;
+            }
+            total.insert(0, INT_TO_SNAFU_MAPPING.get(add));
+            idx++;
         }
-        return result;
+        return carry > 0 ? total.insert(0, carry).toString() : total.toString();
     }
 
 }
