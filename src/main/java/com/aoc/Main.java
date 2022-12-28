@@ -32,11 +32,11 @@ public class Main {
         put("22", new ProblemDay22());
         put("23", new ProblemDay23());
         put("24", new ProblemDay24());
-//        put("25a", new ProblemDay25a());
+        put("25", new ProblemDay25());
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("24").run('b');
+        PROBLEMS.get("25").run('a');
     }
 
 }
