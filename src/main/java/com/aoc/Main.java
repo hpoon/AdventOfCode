@@ -8,19 +8,19 @@ import java.util.Map;
 public class Main {
 
     private static final Map<String, ProblemDay<?, ?>> PROBLEMS = new HashMap<>() {{
-        put("1", new ProblemDay14());
-        put("2", new ProblemDay15());
-        put("3", new ProblemDay14());
-        put("4", new ProblemDay15());
-        put("5", new ProblemDay14());
-        put("6", new ProblemDay15());
-        put("7", new ProblemDay14());
-        put("8", new ProblemDay15());
-        put("9", new ProblemDay14());
-        put("10", new ProblemDay15());
-        put("11", new ProblemDay14());
-        put("12", new ProblemDay15());
-        put("13", new ProblemDay15());
+        put("1", new ProblemDay1());
+        put("2", new ProblemDay2());
+        put("3", new ProblemDay3());
+        put("4", new ProblemDay4());
+        put("5", new ProblemDay5());
+        put("6", new ProblemDay6());
+        put("7", new ProblemDay7());
+        put("8", new ProblemDay8());
+        put("9", new ProblemDay9());
+        put("10", new ProblemDay10());
+        put("11", new ProblemDay11());
+        put("12", new ProblemDay12());
+        put("13", new ProblemDay13());
         put("14", new ProblemDay14());
         put("15", new ProblemDay15());
         put("16", new ProblemDay16());

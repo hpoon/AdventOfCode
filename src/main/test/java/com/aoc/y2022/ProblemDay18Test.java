@@ -24,7 +24,7 @@ public class ProblemDay18Test implements ProblemDayTest {
     @Test
     @Override
     public void testSolveB() {
-        assertThat(problem.solveB()).isEqualTo(0);
+        assertThat(problem.solveB()).isEqualTo(2546);
     }
 
 }
