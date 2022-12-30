@@ -12,10 +12,11 @@ public class Main {
         put("2", new ProblemDay2());
         put("3", new ProblemDay3());
         put("4", new ProblemDay4());
+        put("5", new ProblemDay5());
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("4").run('b');
+        PROBLEMS.get("5").run('b');
     }
 
 }
