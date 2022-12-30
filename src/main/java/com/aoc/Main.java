@@ -15,10 +15,11 @@ public class Main {
         put("5", new ProblemDay5());
         put("6", new ProblemDay6());
         put("7", new ProblemDay7());
+        put("8", new ProblemDay8());
     }};
 
     public static void main(String[] args) {
-        PROBLEMS.get("7").run('b');
+        PROBLEMS.get("8").run('b');
     }
 
 }
