@@ -25,7 +25,7 @@ public class Matrix<T> {
         }
     }
 
-    private Matrix(List<List<T>> matrix) {
+    public Matrix(List<List<T>> matrix) {
         this.matrix = matrix;
     }
 
@@ -51,6 +51,10 @@ public class Matrix<T> {
             }
         }
         return results;
+    }
+
+    public void set(int row, int col, T value) {
+        matrix.get(row).set(col, value);
     }
 
     public List<Integer> getRowBounds(int row, Function<T, Boolean> isValidFunction) {
