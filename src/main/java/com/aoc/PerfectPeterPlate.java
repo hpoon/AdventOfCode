@@ -5,7 +5,7 @@ import com.aoc.y2015.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class PerfectPeterPlate {
 
     private static final Map<String, ProblemDay<?, ?>> PROBLEMS = new HashMap<>() {{
         put("1", new ProblemDay1());
