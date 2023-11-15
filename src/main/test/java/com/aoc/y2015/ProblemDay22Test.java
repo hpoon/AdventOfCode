@@ -6,25 +6,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class ProblemDay21Test implements ProblemDayTest {
+public class ProblemDay22Test implements ProblemDayTest {
 
-    private ProblemDay21 problem;
+    private ProblemDay22 problem;
 
     @BeforeEach
     public void before() {
-        problem = new ProblemDay21();
+        problem = new ProblemDay22();
     }
 
     @Test
     @Override
     public void testSolveA() {
-        assertThat(problem.solveA()).isEqualTo(78);
+        assertThat(problem.solveA()).isEqualTo(900);
     }
 
     @Test
     @Override
     public void testSolveB() {
-        assertThat(problem.solveB()).isEqualTo(148);
+        assertThat(problem.solveB()).isEqualTo(1216);
     }
 
 }
