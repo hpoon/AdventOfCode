@@ -178,7 +178,7 @@ public class Matrix<T> {
         return copy;
     }
 
-    private boolean withinBounds(int row, int col) {
+    public boolean withinBounds(int row, int col) {
         return row >= 0 && row < matrix.size() && col >= 0 && col < matrix.get(row).size();
     }
 
