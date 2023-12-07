@@ -2,6 +2,8 @@ package com.aoc.y2023;
 
 import com.aoc.ProblemDay;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,19 +13,12 @@ public class ProblemDay6 extends ProblemDay<Long, Long> {
 
     @Override
     public Long solveA() {
-        List<Long> timeLimit = parseLineA();
+        List<Long> timeLimits = parseLineA();
         List<Long> records = parseLineA();
         long result = 1;
-        for (long i = 0; i < timeLimit.size(); i++) {
-            long time = timeLimit.get((int) i);
-            long dist = records.get((int) i);
-            long wins = 0;
-            for (long t = 0; t < time; t++) {
-                if (distance(time, t) > dist) {
-                    wins++;
-                }
-            }
-            result *= wins;
+        for (long i = 0; i < timeLimits.size(); i++) {
+            Pair<Long, Long> roots = roots(-1, timeLimits.get((int) i), -records.get((int) i));
+            result *= roots.getValue() - roots.getKey() + 1;
         }
         return result;
     }
@@ -32,56 +27,15 @@ public class ProblemDay6 extends ProblemDay<Long, Long> {
     public Long solveB() {
         long timeLimit = parseLineB();
         long record = parseLineB();
-        long optimalTime = timeAtLongestDistance(timeLimit);
-        long min = binarySearch(timeLimit, record, optimalTime, true);
-        long max = binarySearch(timeLimit, record, optimalTime, false);
-        return max - min + 1;
+        Pair<Long, Long> roots = roots(-1, timeLimit, -record);
+        return roots.getValue() - roots.getKey() + 1;
     }
 
-    private long binarySearch(long timeLimit, long record, long optimalTime, boolean findMin) {
-        long a = findMin ? 0 : optimalTime;
-        long b = findMin ? optimalTime : timeLimit;
-        long mid = (a + b) / 2;
-        while (a < b) {
-            long distanceAtMidMinus1 = distance(timeLimit, mid - 1);
-            long distanceAtMid = distance(timeLimit, mid);
-            long distanceAtMidPlus1 = distance(timeLimit, mid + 1);
-            if (findMin) {
-                if (distanceAtMidMinus1 > record && distanceAtMid > record && distanceAtMidPlus1 > record) {
-                    b = mid;
-                } else if (distanceAtMidMinus1 < record && distanceAtMid < record && distanceAtMidPlus1 < record) {
-                    a = mid;
-                } else if (distanceAtMidMinus1 < record && distanceAtMid > record) {
-                    return mid;
-                } else if (distanceAtMid < record && distanceAtMidMinus1 > record) {
-                    return mid - 1;
-                } else if (distanceAtMid < record && distanceAtMidPlus1 > record) {
-                    return mid + 1;
-                }
-            } else {
-                if (distanceAtMidMinus1 > record && distanceAtMid > record && distanceAtMidPlus1 > record) {
-                    a = mid;
-                } else if (distanceAtMidMinus1 < record && distanceAtMid < record && distanceAtMidPlus1 < record) {
-                    b = mid;
-                } else if (distanceAtMidMinus1 > record && distanceAtMid < record) {
-                    return mid - 1;
-                } else if (distanceAtMid > record && distanceAtMidPlus1 < record) {
-                    return mid;
-                } else if (distanceAtMid < record && distanceAtMidPlus1 > record) {
-                    return mid + 1;
-                }
-            }
-            mid = (a + b) / 2;
-        }
-        return mid;
-    }
-
-    private long distance(long maxTime, long timeHeld) {
-        return (maxTime - timeHeld) * timeHeld;
-    }
-
-    private long timeAtLongestDistance(long maxTime) {
-        return maxTime / 2;
+    private Pair<Long, Long> roots(long a, long b, long c) {
+        double discriminant = Math.sqrt(Math.pow(b, 2.0) - 4 * a * c);
+        double zero1 = (-b - discriminant) / (2 * a);
+        double zero2 = (-b + discriminant) / (2 * a);
+        return ImmutablePair.of((long) Math.ceil(Math.min(zero1, zero2)), (long) Math.floor(Math.max(zero1, zero2)));
     }
 
     private List<Long> parseLineA() {
