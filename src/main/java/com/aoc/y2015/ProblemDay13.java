@@ -1,5 +1,6 @@
 package com.aoc.y2015;
 
+import com.aoc.Combinatorics;
 import com.aoc.ProblemDay;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -29,44 +30,29 @@ public class ProblemDay13 extends ProblemDay<Integer, Integer> {
     }
 
     private int solve(Map<Pair<String, String>, Integer> pairings, List<String> people) {
-        List<List<String>> combos = new ArrayList<>();
-        permutations(people, new ArrayList<>(), combos);
-        return maxScore(combos, pairings);
+        List<List<String>> permutations = new ArrayList<>();
+        Combinatorics.permutations(people, new ArrayList<>(), permutations);
+        return maxScore(permutations, pairings);
     }
 
-    private int maxScore(List<List<String>> combos, Map<Pair<String, String>, Integer> pairings) {
+    private int maxScore(List<List<String>> permutations, Map<Pair<String, String>, Integer> pairings) {
         int max = -999999;
-        for (List<String> combo: combos) {
-            max = Math.max(max, score(combo, pairings));
+        for (List<String> permutation: permutations) {
+            max = Math.max(max, score(permutation, pairings));
         }
         return max;
     }
 
-    private int score(List<String> combo, Map<Pair<String, String>, Integer> pairings) {
+    private int score(List<String> permutation, Map<Pair<String, String>, Integer> pairings) {
         int score = 0;
-        for (int i = 1; i < combo.size(); i++) {
-            score += pairings.getOrDefault(ImmutablePair.of(combo.get(i-1), combo.get(i)), 0);
-            score += pairings.getOrDefault(ImmutablePair.of(combo.get(i), combo.get(i-1)), 0);
+        for (int i = 1; i < permutation.size(); i++) {
+            score += pairings.getOrDefault(ImmutablePair.of(permutation.get(i-1), permutation.get(i)), 0);
+            score += pairings.getOrDefault(ImmutablePair.of(permutation.get(i), permutation.get(i-1)), 0);
         }
-        score += pairings.getOrDefault(ImmutablePair.of(combo.get(combo.size()-1), combo.get(0)), 0);
-        score += pairings.getOrDefault(ImmutablePair.of(combo.get(0), combo.get(combo.size()-1)), 0);
+        score += pairings.getOrDefault(ImmutablePair.of(permutation.get(permutation.size()-1), permutation.get(0)), 0);
+        score += pairings.getOrDefault(ImmutablePair.of(permutation.get(0), permutation.get(permutation.size()-1)), 0);
         return score;
     }
-
-    private void permutations(List<String> people, List<String> combo, List<List<String>> combos) {
-        if (people.isEmpty()) {
-            combos.add(combo);
-            return;
-        }
-        for (int i = 0; i < people.size(); i++) {
-            List<String> newCombo = new ArrayList<>(combo);
-            newCombo.add(people.get(i));
-            List<String> newPeople = new ArrayList<>(people);
-            newPeople.remove(i);
-            permutations(newPeople, newCombo, combos);
-        }
-    }
-
 
     private List<String> people(Map<Pair<String, String>, Integer> pairings) {
         return ImmutableList.<String>builder()
