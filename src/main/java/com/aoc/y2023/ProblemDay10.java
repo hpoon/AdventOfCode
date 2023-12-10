@@ -180,10 +180,9 @@ public class ProblemDay10 extends ProblemDay<Integer, Integer> {
                         queue.add(m);
                         debug.set(m.getRow(), m.getCol(), m.getValue());
                     });
-//            debug.print();
         }
         visited.put(start, 0);
-//        debug.print();
+        debug.print();
         return visited;
     }
 
