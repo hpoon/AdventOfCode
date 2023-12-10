@@ -47,7 +47,7 @@ public class ProblemDay6 extends ProblemDay<Integer, Integer> {
                 InstructionType.TOGGLE, bool -> !bool);
         for (int row = start.getY(); row <= end.getY(); row++) {
             for (int col = start.getX(); col <= end.getX(); col++) {
-                grid.set(row, col, operations.get(type).apply(grid.get(row, col)));
+                grid.set(row, col, operations.get(type).apply(grid.getValue(row, col)));
             }
         }
     }
@@ -62,7 +62,7 @@ public class ProblemDay6 extends ProblemDay<Integer, Integer> {
                 InstructionType.TOGGLE, val -> val + 2);
         for (int row = start.getY(); row <= end.getY(); row++) {
             for (int col = start.getX(); col <= end.getX(); col++) {
-                grid.set(row, col, operations.get(type).apply(grid.get(row, col)));
+                grid.set(row, col, operations.get(type).apply(grid.getValue(row, col)));
             }
         }
     }

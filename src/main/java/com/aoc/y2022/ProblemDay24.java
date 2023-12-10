@@ -187,7 +187,7 @@ public class ProblemDay24 extends ProblemDay<Integer, Integer> {
         Map<Point2D, Set<Wind>> winds = new HashMap<>();
         for (int row = 0; row < map.height(); row++) {
             for (int col = 0; col < map.width(row); col++) {
-                char c = map.get(row, col);
+                char c = map.getValue(row, col);
                 if (WIND_DIRECTIONS.containsKey(c)) {
                     Set<Wind> existingWinds = winds.getOrDefault(new Point2D(col, row), new HashSet<>());
                     Point2D location = new Point2D(col, row);

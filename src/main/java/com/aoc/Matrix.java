@@ -33,15 +33,19 @@ public class Matrix<T> {
         matrix.add(row);
     }
 
-    public T get(int row, int col) {
+    public T getValue(int row, int col) {
         return matrix.get(row).get(col);
     }
 
-    public T get(MatrixElement<T> element) {
-        return get(element.getRow(), element.getCol());
+    public MatrixElement<T> getElement(int row, int col) {
+        return new MatrixElement<>(row, col, getValue(row, col));
     }
 
-    public List<MatrixElement<T>> get(T value) {
+    public T getValue(MatrixElement<T> element) {
+        return getValue(element.getRow(), element.getCol());
+    }
+
+    public List<MatrixElement<T>> getValue(T value) {
         List<MatrixElement<T>> results = new ArrayList<>();
         for (int row = 0; row < matrix.size(); row++) {
             for (int col = 0; col < matrix.get(row).size(); col++) {
@@ -63,7 +67,7 @@ public class Matrix<T> {
             if (!withinBounds(row, col)) {
                 continue;
             }
-            if (isValidFunction.apply(get(row, col))) {
+            if (isValidFunction.apply(getValue(row, col))) {
                 indices.add(col);
             }
         }
@@ -76,7 +80,7 @@ public class Matrix<T> {
             if (!withinBounds(row, col)) {
                 continue;
             }
-            if (isValidFunction.apply(get(row, col))) {
+            if (isValidFunction.apply(getValue(row, col))) {
                 indices.add(row);
             }
         }
@@ -96,7 +100,7 @@ public class Matrix<T> {
         for (int row = 0; row < matrix.size(); row++) {
             List<T> resultRow = new ArrayList<>();
             for (int col = 0; col < matrix.get(row).size(); col++) {
-                resultRow.add(kernel.apply(new MatrixElement<>(row, col, get(row, col))));
+                resultRow.add(kernel.apply(new MatrixElement<>(row, col, getValue(row, col))));
             }
             result.add(resultRow);
         }
@@ -109,7 +113,7 @@ public class Matrix<T> {
                 .boxed()
                 .flatMap(row -> IntStream.range(0, matrix.get(row).size())
                         .boxed()
-                        .map(col -> new MatrixElement<>(row, col, get(row, col)))
+                        .map(col -> new MatrixElement<>(row, col, getValue(row, col)))
                         .filter(condition)));
     }
 
@@ -144,7 +148,7 @@ public class Matrix<T> {
             directions.stream()
                     .map(dir -> new Point2D(dir.getX() + col,dir.getY() + row))
                     .filter(dir -> withinBounds(dir.getY(), dir.getX()))
-                    .map(dir -> new MatrixElement<>(dir.getY(), dir.getX(), get(dir.getY(), dir.getX())))
+                    .map(dir -> new MatrixElement<>(dir.getY(), dir.getX(), getValue(dir.getY(), dir.getX())))
                     .filter(next -> !visited.contains(next))
                     .filter(next -> isValidPathFunction.apply(val, next.getValue()))
                     .forEach(next -> {
@@ -171,7 +175,7 @@ public class Matrix<T> {
         for (int r = row; r < row + height; r++) {
             List<T> l = new ArrayList<>();
             for (int c = col; c < col + width; c++) {
-                l.add(get(r, c));
+                l.add(getValue(r, c));
             }
             copy.addRow(l);
         }
@@ -180,6 +184,16 @@ public class Matrix<T> {
 
     public boolean withinBounds(int row, int col) {
         return row >= 0 && row < matrix.size() && col >= 0 && col < matrix.get(row).size();
+    }
+
+    public void print() {
+        for (int row = 0; row < height(); row++) {
+            for (int col = 0; col < width(row); col++) {
+                System.out.print(getValue(row, col));
+            }
+            System.out.print("\n");
+        }
+        System.out.print("\n");
     }
 
 }

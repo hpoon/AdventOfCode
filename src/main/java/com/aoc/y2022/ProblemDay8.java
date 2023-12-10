@@ -21,27 +21,27 @@ public class ProblemDay8 extends ProblemDay<Long, Integer> {
                         .collect(Collectors.toList()));
 
         Matrix<Integer> leftMaxes = grid.apply(p -> IntStream.range(0, p.getCol())
-                .map(col -> grid.get(p.getRow(), col))
+                .map(col -> grid.getValue(p.getRow(), col))
                 .max()
                 .orElse(-1));
         Matrix<Integer> rightMaxes = grid.apply(p -> IntStream.range(p.getCol() + 1, grid.width(p.getRow()))
-                .map(col -> grid.get(p.getRow(), col))
+                .map(col -> grid.getValue(p.getRow(), col))
                 .max()
                 .orElse(-1));
         Matrix<Integer> topMaxes = grid.apply(p -> IntStream.range(0, p.getRow())
-                .map(row -> grid.get(row, p.getCol()))
+                .map(row -> grid.getValue(row, p.getCol()))
                 .max()
                 .orElse(-1));
         Matrix<Integer> bottomMaxes = grid.apply(p -> IntStream.range(p.getRow() + 1, grid.height())
-                .map(row -> grid.get(row, p.getCol()))
+                .map(row -> grid.getValue(row, p.getCol()))
                 .max()
                 .orElse(-1));
         Matrix<Integer> smallestMax = leftMaxes
-                .apply(p -> Math.min(p.getValue(), rightMaxes.get(p)))
-                .apply(p -> Math.min(p.getValue(), topMaxes.get(p)))
-                .apply(p -> Math.min(p.getValue(), bottomMaxes.get(p)));
+                .apply(p -> Math.min(p.getValue(), rightMaxes.getValue(p)))
+                .apply(p -> Math.min(p.getValue(), topMaxes.getValue(p)))
+                .apply(p -> Math.min(p.getValue(), bottomMaxes.getValue(p)));
         return grid.score(
-                p -> grid.get(p) > smallestMax.get(p),
+                p -> grid.getValue(p) > smallestMax.getValue(p),
                 Stream::count);
     }
 
@@ -65,9 +65,9 @@ public class ProblemDay8 extends ProblemDay<Long, Integer> {
         Matrix<Integer> bottomCount = grid.apply(p -> countLineOfSight(
                 grid, p, p.getRow() + 1, grid.height(), false, false));
         Matrix<Integer> score = leftCount
-                .apply(p -> p.getValue() * rightCount.get(p))
-                .apply(p -> p.getValue() * topCount.get(p))
-                .apply(p -> p.getValue() * bottomCount.get(p));
+                .apply(p -> p.getValue() * rightCount.getValue(p))
+                .apply(p -> p.getValue() * topCount.getValue(p))
+                .apply(p -> p.getValue() * bottomCount.getValue(p));
         return score.score(
                 p -> true,
                 stream -> stream.mapToInt(MatrixElement::getValue).max().orElse(-1));
@@ -93,9 +93,9 @@ public class ProblemDay8 extends ProblemDay<Long, Integer> {
         }
         for (int i = start; reverse ? i >= end : i < end; i += step) {
             count++;
-            if (isHorizontal && grid.get(element) <= grid.get(element.getRow(), i)) {
+            if (isHorizontal && grid.getValue(element) <= grid.getValue(element.getRow(), i)) {
                 break;
-            } else if (!isHorizontal && grid.get(element) <= grid.get(i, element.getCol())) {
+            } else if (!isHorizontal && grid.getValue(element) <= grid.getValue(i, element.getCol())) {
                 break;
             }
         }

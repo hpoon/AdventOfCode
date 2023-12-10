@@ -18,8 +18,8 @@ public class ProblemDay12 extends ProblemDay<Integer, Integer> {
     public Integer solveA() {
         Function<String, List<Integer>> function = line -> line.chars().boxed().collect(Collectors.toList());
         Matrix<Integer> map = new Matrix<>(scanner, function);
-        MatrixElement<Integer> start = map.get((int)'S').get(0);
-        MatrixElement<Integer> end = map.get((int) 'E').get(0);
+        MatrixElement<Integer> start = map.getValue((int)'S').get(0);
+        MatrixElement<Integer> end = map.getValue((int) 'E').get(0);
         List<MatrixElement<Integer>> path = map.bfs(
                 start,
                 end,
@@ -32,8 +32,8 @@ public class ProblemDay12 extends ProblemDay<Integer, Integer> {
     public Integer solveB() {
         Function<String, List<Integer>> function = line -> line.chars().boxed().collect(Collectors.toList());
         Matrix<Integer> map = new Matrix<>(scanner, function);
-        List<MatrixElement<Integer>> starts = map.get((int)'a');
-        MatrixElement<Integer> end = map.get((int) 'E').get(0);
+        List<MatrixElement<Integer>> starts = map.getValue((int)'a');
+        MatrixElement<Integer> end = map.getValue((int) 'E').get(0);
         int min = Integer.MAX_VALUE;
         for (MatrixElement<Integer> start : starts) {
             List<MatrixElement<Integer>> path = map.bfs(

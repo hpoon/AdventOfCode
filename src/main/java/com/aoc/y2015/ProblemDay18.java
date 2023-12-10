@@ -94,7 +94,7 @@ public class ProblemDay18 extends ProblemDay<Integer, Integer> {
                 if (c == col && r == row) {
                     continue;
                 }
-                count += Boolean.TRUE.equals(grid.get(r, c)) ? 1 : 0;
+                count += Boolean.TRUE.equals(grid.getValue(r, c)) ? 1 : 0;
             }
         }
         return count;

@@ -293,7 +293,7 @@ public class ProblemDay22 extends ProblemDay<Integer, Integer> {
             default:
                 throw new RuntimeException("Unexpected");
         }
-        char tile = nextTransition.getMap().get(nextRow, nextCol);
+        char tile = nextTransition.getMap().getValue(nextRow, nextCol);
         if (tile == '#') {
             // Don't move to new spot
             return ImmutablePair.of(new MatrixElement<>(row, col, '.'), transition);
@@ -382,7 +382,7 @@ public class ProblemDay22 extends ProblemDay<Integer, Integer> {
             default:
                 throw new RuntimeException("Unexpected");
         }
-        char tile = map.get(nextRow, nextCol);
+        char tile = map.getValue(nextRow, nextCol);
         if (tile == '#') {
             // Don't move to new spot
             return new MatrixElement<>(row, col, '.');
@@ -393,7 +393,7 @@ public class ProblemDay22 extends ProblemDay<Integer, Integer> {
     }
 
     private MatrixElement<Character> findStartingLocation(Matrix<Character> map) {
-        return map.get('.').get(0);
+        return map.getValue('.').get(0);
     }
 
     private Matrix<Character> parseMap() {

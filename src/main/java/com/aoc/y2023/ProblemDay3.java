@@ -49,7 +49,7 @@ public class ProblemDay3 extends ProblemDay<Integer, Integer> {
         for (int row = 0; row < matrix.height(); row++) {
             List<MatrixElement<String>> elements = new ArrayList<>();
             for (int col = 0; col < matrix.width(row); col++) {
-                String value = matrix.get(row, col);
+                String value = matrix.getValue(row, col);
                 if (isCellANumber(value)) {
                     elements.add(new MatrixElement<>(row, col, value));
                 } else {
@@ -84,7 +84,7 @@ public class ProblemDay3 extends ProblemDay<Integer, Integer> {
                                         .map(p -> {
                                             int adjRow = r + p.getY();
                                             int adjCol = c + p.getX();
-                                            String adjVal = matrix.get(adjRow, adjCol);
+                                            String adjVal = matrix.getValue(adjRow, adjCol);
                                             return new MatrixElement<>(adjRow, adjCol, adjVal);
                                         });
                             })
