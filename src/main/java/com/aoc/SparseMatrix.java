@@ -35,7 +35,7 @@ public class SparseMatrix<T> {
     }
 
     public List<MatrixElement<T>> get(T value) {
-        return matrix.keySet().stream().filter(v -> v.equals(value)).collect(Collectors.toList());
+        return matrix.keySet().stream().filter(v -> Objects.equals(v.getValue(), value)).collect(Collectors.toList());
     }
 
     public boolean contains(MatrixElement<T> value) {
@@ -71,6 +71,20 @@ public class SparseMatrix<T> {
     public void replace(MatrixElement<T> oldElement, MatrixElement<T> newElement) {
         matrix.remove(oldElement);
         matrix.put(newElement, newElement.getValue());
+    }
+
+    public void print(String blank) {
+        for (int row = 0; row < height(); row++) {
+            for (int col = 0; col < width(); col++) {
+                System.out.print(get(row, col) != null ? get(row, col) : blank);
+            }
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+    }
+
+    public int manhattanDistance(MatrixElement<T> e1, MatrixElement<T> e2) {
+        return Math.abs(e1.getRow() - e2.getRow()) + Math.abs(e1.getCol() - e2.getCol());
     }
 
 }

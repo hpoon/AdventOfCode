@@ -196,4 +196,8 @@ public class Matrix<T> {
         System.out.print("\n");
     }
 
+    public int manhattanDistance(MatrixElement<T> e1, MatrixElement<T> e2) {
+        return Math.abs(e1.getRow() - e2.getRow()) + Math.abs(e1.getCol() - e2.getCol());
+    }
+
 }
