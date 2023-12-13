@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -167,6 +168,10 @@ public class Matrix<T> {
         return path;
     }
 
+    public Matrix<T> copy() {
+        return copy(0, 0, width(0), height());
+    }
+
     public Matrix<T> copy(int row, int col, int width, int height) {
         if (!withinBounds(row, col) || !withinBounds(row + height - 1, col + width - 1)) {
             throw new RuntimeException("Out of bounds");
@@ -198,6 +203,16 @@ public class Matrix<T> {
 
     public int manhattanDistance(MatrixElement<T> e1, MatrixElement<T> e2) {
         return Math.abs(e1.getRow() - e2.getRow()) + Math.abs(e1.getCol() - e2.getCol());
+    }
+
+    public Matrix<T> transpose() {
+        Matrix<T> matrix = new Matrix<>();
+        IntStream.range(0, width(0))
+                .forEach(c -> matrix.addRow(IntStream.range(0, height())
+                        .boxed()
+                        .map(r -> getValue(r, c))
+                        .collect(Collectors.toList())));
+        return matrix;
     }
 
 }
