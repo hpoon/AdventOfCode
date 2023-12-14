@@ -1,6 +1,7 @@
 package com.aoc;
 
 import com.google.common.collect.Sets;
+import lombok.EqualsAndHashCode;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+@EqualsAndHashCode
 public class Matrix<T> {
 
     private final List<List<T>> matrix;
@@ -96,10 +98,10 @@ public class Matrix<T> {
         return matrix.get(row).size();
     }
 
-    public Matrix<T> apply(Function<MatrixElement<T>, T> kernel) {
-        List<List<T>> result = new ArrayList<>();
+    public <U> Matrix<U> apply(Function<MatrixElement<T>, U> kernel) {
+        List<List<U>> result = new ArrayList<>();
         for (int row = 0; row < matrix.size(); row++) {
-            List<T> resultRow = new ArrayList<>();
+            List<U> resultRow = new ArrayList<>();
             for (int col = 0; col < matrix.get(row).size(); col++) {
                 resultRow.add(kernel.apply(new MatrixElement<>(row, col, getValue(row, col))));
             }
@@ -212,6 +214,30 @@ public class Matrix<T> {
                         .boxed()
                         .map(r -> getValue(r, c))
                         .collect(Collectors.toList())));
+        return matrix;
+    }
+
+    public Matrix<T> rotateCW() {
+        Matrix<T> matrix = new Matrix<>();
+        for (int col = 0; col < width(0); col++) {
+            List<T> rotated = new ArrayList<>();
+            for (int row = height() - 1; row >= 0; row--) {
+                rotated.add(getValue(row, col));
+            }
+            matrix.addRow(rotated);
+        }
+        return matrix;
+    }
+
+    public Matrix<T> rotateCCW() {
+        Matrix<T> matrix = new Matrix<>();
+        for (int col = width(0) - 1; col >= 0; col--) {
+            List<T> rotated = new ArrayList<>();
+            for (int row = 0; row < height(); row++) {
+                rotated.add(getValue(row, col));
+            }
+            matrix.addRow(rotated);
+        }
         return matrix;
     }
 
