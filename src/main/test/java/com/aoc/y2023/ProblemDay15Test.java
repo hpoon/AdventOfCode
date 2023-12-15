@@ -18,13 +18,18 @@ public class ProblemDay15Test implements ProblemDayTest {
     @Test
     @Override
     public void testSolveA() {
-        assertThat(problem.solveA()).isEqualTo(0);
+        assertThat(problem.solveA()).isEqualTo(513643);
     }
 
     @Test
     @Override
     public void testSolveB() {
-        assertThat(problem.solveB()).isEqualTo(0);
+        assertThat(problem.solveB()).isEqualTo(265345);
     }
 
+    @Test
+    public void testHash() {
+        assertThat(problem.hash("rn")).isEqualTo(0);
+        assertThat(problem.hash("cm")).isEqualTo(0);
+    }
 }
