@@ -1,13 +1,11 @@
 package com.aoc;
 
-import com.aoc.y2023.ProblemDay17;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class Djikstra {
 
