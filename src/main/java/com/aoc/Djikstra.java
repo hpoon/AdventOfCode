@@ -1,6 +1,9 @@
 package com.aoc;
 
+import com.aoc.y2023.ProblemDay17;
 import com.google.common.collect.ImmutableList;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 import java.util.function.Function;
@@ -13,12 +16,11 @@ public class Djikstra {
                                                              Graph.GraphNode<T> destination,
                                                              Function<Graph.GraphEdge<T>, Integer> weightFunction) {
         Map<Graph.GraphNode<T>, Integer> distances = new HashMap<>();
+        Queue<Pair<Graph.GraphNode<T>, Integer>> priority = new PriorityQueue<>(Map.Entry.comparingByValue());
         Map<Graph.GraphNode<T>, Graph.GraphNode<T>> nodeToParent = new HashMap<>();
         distances.put(origin, 0);
         Graph.GraphNode<T> current = origin;
-        Set<Graph.GraphNode<T>> visited = new HashSet<>();
         while (current != null) {
-            visited.add(current);
             Set<Graph.GraphEdge<T>> edges = graph.getConnections(current);
             int weightToCurrent = distances.getOrDefault(current, 0);
             for (Graph.GraphEdge<T> edge : edges) {
@@ -26,23 +28,18 @@ public class Djikstra {
                 if (distances.containsKey(edge.getConnection())) {
                     int currentSmallestWeight = distances.get(edge.getConnection());
                     if (currWeight < currentSmallestWeight) {
+                        priority.remove(ImmutablePair.of(edge.getConnection(), distances.get(edge.getConnection())));
                         distances.put(edge.getConnection(), currWeight);
+                        priority.add(ImmutablePair.of(edge.getConnection(), currWeight));
                         nodeToParent.put(edge.getConnection(), current);
                     }
                 } else {
                     distances.put(edge.getConnection(), currWeight);
+                    priority.add(ImmutablePair.of(edge.getConnection(), currWeight));
                     nodeToParent.put(edge.getConnection(), current);
                 }
             }
-            Set<Graph.GraphNode<T>> connections = edges.stream()
-                    .map(Graph.GraphEdge::getConnection)
-                    .collect(Collectors.toSet());
-            current = distances.entrySet().stream()
-                    .filter(e -> connections.contains(e.getKey()))
-                    .filter(e -> !visited.contains(e.getKey()))
-                    .min(Map.Entry.comparingByValue(Comparator.naturalOrder()))
-                    .map(Map.Entry::getKey)
-                    .orElse(null);
+            current = !priority.isEmpty() ? priority.poll().getLeft() : null;
         }
 
         List<Graph.GraphNode<T>> path = new ArrayList<>();
