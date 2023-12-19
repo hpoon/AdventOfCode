@@ -12,16 +12,16 @@ public class ProblemDay18 extends ProblemDay<Long, Long> {
     @Override
     public Long solveA() {
         List<Instruction> instructions = parseA();
-        return solveB(instructions);
+        return solve(instructions);
     }
 
     @Override
     public Long solveB() {
         List<Instruction> instructions = parseB();
-        return solveB(instructions);
+        return solve(instructions);
     }
 
-    private long solveB(List<Instruction> instructions) {
+    private long solve(List<Instruction> instructions) {
         Point2D p1 = new Point2D(0, 0);
         long shoelace = 0;
         for (Instruction ins : instructions) {
