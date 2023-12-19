@@ -145,7 +145,7 @@ public class Matrix<T> {
             int row = element.getRow();
             int col = element.getCol();
             T val = element.getValue();
-            if (val.equals(end)) {
+            if (Objects.equals(val, end)) {
                 break;
             }
             directions.stream()
