@@ -3,8 +3,6 @@ package com.aoc;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.Scanner;
 
 public abstract class ProblemDay<T, U> {
@@ -23,19 +21,6 @@ public abstract class ProblemDay<T, U> {
                 .replaceAll("[0-9]{4}", "")
                 .replaceAll("[A-Za-z]", ""));
         this.scanner = getProblemInputStream(year, day);
-    }
-
-    public void run(char part) {
-        try (scanner) {
-            Instant t1 = Instant.now();
-            switch (part) {
-                case 'a': System.out.println(solveA()); break;
-                case 'b': System.out.println(solveB()); break;
-                default: throw new RuntimeException(String.format("Unsupported part: %c", part));
-            }
-            Instant t2 = Instant.now();
-            System.out.printf("Problem solved in: %d ms%n", Duration.between(t1, t2).toMillis());
-        }
     }
 
     private Scanner getProblemInputStream(int year, int day) {
