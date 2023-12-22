@@ -121,7 +121,7 @@ public class ProblemDay22 extends ProblemDay<Long, Long> {
     @EqualsAndHashCode
     private static class Brick {
 
-        int label;
+        private int label;
 
         private List<Point3D> cubes;
 
