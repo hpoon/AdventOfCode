@@ -37,6 +37,44 @@ public class TopologicalSort {
         return distances;
     }
 
+    public static <T> Map<MatrixElement<T>, Integer> nodeToLongestPaths(
+            Matrix<T> matrix,
+            MatrixElement<T> origin,
+            Function<MatrixElement<T>, Boolean> validElementFunction,
+            Function<MatrixElement<T>, List<MatrixElement<T>>> eligibleStepsFunction) {
+        Stack<MatrixElement<T>> stack = new Stack<>();
+        Set<MatrixElement<T>> visited = new HashSet<>();
+
+        for (int row = 0; row < matrix.height(); row++) {
+            for (int col = 0; col < matrix.width(row); col++) {
+                MatrixElement<T> element = matrix.getElement(row, col);
+                if (!validElementFunction.apply(element)) {
+                    continue;
+                }
+                if (!visited.contains(element)) {
+                    topologicalSort(element, visited, stack, eligibleStepsFunction);
+                }
+            }
+        }
+
+        Map<MatrixElement<T>, Integer> distances = new HashMap<>();
+        distances.put(origin, 0);
+
+        while (!stack.isEmpty()) {
+            MatrixElement<T> element = stack.pop();
+            if (distances.containsKey(element)) {
+                final List<MatrixElement<T>> steps = eligibleStepsFunction.apply(element);
+                for (MatrixElement<T> step : steps) {
+                    int newDist = distances.get(element) + 1;
+                    if (distances.getOrDefault(step, Integer.MIN_VALUE) < newDist) {
+                        distances.put(step, newDist);
+                    }
+                }
+            }
+        }
+        return distances;
+    }
+
     private static <T> void topologicalSort(Graph.GraphNode<T> node,
                                             Set<Graph.GraphNode<T>> visited,
                                             Stack<Graph.GraphNode<T>> stack,
@@ -50,6 +88,23 @@ public class TopologicalSort {
         for (Graph.GraphNode<T> connection : connections) {
             if (!visited.contains(connection)) {
                 topologicalSort(connection, visited, stack, graph);
+            }
+        }
+
+        stack.push(node);
+    }
+
+    private static <T> void topologicalSort(MatrixElement<T> node,
+                                            Set<MatrixElement<T>> visited,
+                                            Stack<MatrixElement<T>> stack,
+                                            Function<MatrixElement<T>, List<MatrixElement<T>>> eligibleStepsFunction) {
+        visited.add(node);
+
+        // Recurse for all the eligible next steps
+        List<MatrixElement<T>> eligibleSteps = eligibleStepsFunction.apply(node);
+        for (MatrixElement<T> steps : eligibleSteps) {
+            if (!visited.contains(steps)) {
+                topologicalSort(steps, visited, stack, eligibleStepsFunction);
             }
         }
 
