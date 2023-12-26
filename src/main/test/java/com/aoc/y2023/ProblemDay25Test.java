@@ -1,10 +1,12 @@
 package com.aoc.y2023;
 
 import com.aoc.ProblemDayTest;
+import org.apache.commons.lang3.NotImplementedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProblemDay25Test implements ProblemDayTest {
 
@@ -18,13 +20,13 @@ public class ProblemDay25Test implements ProblemDayTest {
     @Test
     @Override
     public void testSolveA() {
-        assertThat(problem.solveA()).isEqualTo(0);
+        assertThat(problem.solveA()).isEqualTo(543564);
     }
 
     @Test
     @Override
     public void testSolveB() {
-        assertThat(problem.solveB()).isEqualTo(0);
+        assertThrows(NotImplementedException.class, () -> problem.solveB());
     }
 
 }

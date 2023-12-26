@@ -6,6 +6,13 @@ import org.apache.commons.collections4.map.MultiKeyMap;
 
 import java.util.*;
 
+/**
+ * Originally made as a way to practice graph related problems, but as more years of AOC passed, its problems has
+ * outscaled the ability of this class, and it was much easier to just use something like JGraphT to do things.
+ *
+ * @param <T>
+ */
+@Deprecated()
 public class Graph<T> {
 
     private final Map<GraphNode<T>, Set<GraphEdge<T>>> adjacencyList;
@@ -56,4 +63,5 @@ public class Graph<T> {
         private final GraphNode<T> connection;
         private final int weight;
     }
+
 }
