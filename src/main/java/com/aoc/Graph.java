@@ -4,7 +4,11 @@ import com.google.common.collect.ImmutableSet;
 import lombok.Value;
 import org.apache.commons.collections4.map.MultiKeyMap;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Originally made as a way to practice graph related problems, but as more years of AOC passed, its problems has
