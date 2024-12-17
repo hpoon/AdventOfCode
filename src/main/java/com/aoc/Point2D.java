@@ -2,8 +2,10 @@ package com.aoc;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode
 @AllArgsConstructor
 public class Point2D {
 
