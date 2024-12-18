@@ -25,7 +25,7 @@ public class ProblemDay12 extends ProblemDay<Integer, Integer> {
                 end,
                 this::isValidPath,
                 false);
-        return path.size();
+        return path.size() - 1;
     }
 
     @Override
@@ -41,14 +41,14 @@ public class ProblemDay12 extends ProblemDay<Integer, Integer> {
                     end,
                     this::isValidPath,
                     false);
-            if (path.isEmpty()) {
+            if (path.size() == 1) {
                 continue;
             }
             if (path.size() < min) {
                 min = path.size();
             }
         }
-        return min;
+        return min - 1;
     }
 
     private boolean isValidPath(int v1, int v2) {

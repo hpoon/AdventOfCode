@@ -161,7 +161,7 @@ public class Matrix<T> {
                     });
         }
         List<MatrixElement<T>> path = new ArrayList<>();
-        MatrixElement<T> element = childToParent.get(end);
+        MatrixElement<T> element = end;
         while (element != null) {
             path.add(element);
             element = childToParent.get(element);
@@ -191,6 +191,10 @@ public class Matrix<T> {
 
     public boolean withinBounds(int row, int col) {
         return row >= 0 && row < matrix.size() && col >= 0 && col < matrix.get(row).size();
+    }
+
+    public boolean withinBounds(MatrixElement<T> element) {
+        return withinBounds(element.getRow(), element.getCol());
     }
 
     public void print() {
