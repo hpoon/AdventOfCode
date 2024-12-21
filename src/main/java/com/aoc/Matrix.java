@@ -28,6 +28,17 @@ public class Matrix<T> {
         }
     }
 
+    public Matrix(int height, int width, T defaultValue) {
+        matrix = new ArrayList<>();
+        for (int r = 0; r < height; r++) {
+            List<T> row = new ArrayList<>();
+            for (int c = 0; c < width; c++) {
+                row.add(defaultValue);
+            }
+            matrix.add(row);
+        }
+    }
+
     public Matrix(List<List<T>> matrix) {
         this.matrix = matrix;
     }
